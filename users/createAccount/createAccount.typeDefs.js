@@ -2,7 +2,7 @@ import { gql } from "apollo-server-express";
 
 export default gql`
     type CreateAccountResult {
-        ok:Boolean!
+        ok: Boolean!
         error: String
     }
     type Mutation {

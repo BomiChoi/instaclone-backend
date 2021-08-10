@@ -15,11 +15,7 @@ export default {
                 const existingUser = await client.user.findFirst({
                     where: {
                         OR: [
-                            {
-                                username,
-                            }, {
-                                email,
-                            },
+                            { username }, { email },
                         ],
                     },
                 });
@@ -29,7 +25,7 @@ export default {
                 // hash password
                 const uglyPassword = await bcrypt.hash(password, 10);
                 // save and return the user
-                return client.user.create({
+                const newUser = await client.user.create({
                     data: {
                         username,
                         email,
@@ -38,8 +34,9 @@ export default {
                         password: uglyPassword,
                     },
                 });
+                return { ok: true }
             } catch (e) {
-                return e;
+                return { ok: false, error: "Could not create account." };
             }
         },
     },
