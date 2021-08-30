@@ -15,9 +15,9 @@ export default {
                         hashtags: {
                             select: {
                                 hashtag: true,
-                            }
-                        }
-                    }
+                            },
+                        },
+                    },
                 });
                 if (!oldPhoto) {
                     return {
