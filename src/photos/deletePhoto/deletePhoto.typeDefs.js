@@ -1,7 +1,7 @@
 import { gql } from "apollo-server-express";
 
 export default gql`
-    type Mutation {
-        toggleLike(id: Int!): MutationResponse!
+    type Mutation{
+        deletePhoto(id: Int!): MutationResponse!
     }
 `;
