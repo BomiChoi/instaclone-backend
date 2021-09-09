@@ -3,7 +3,7 @@ import { protectedResolver } from "../../users/users.utils";
 
 export default {
     Query: {
-        seeFeed: protectedResolver((_, { lastId }, { loggedInUser }) =>
+        seeFeed: protectedResolver((_, { offset }, { loggedInUser }) =>
             client.photo.findMany({
                 where: {
                     OR: [
@@ -19,14 +19,13 @@ export default {
                         {
                             userId: loggedInUser.id,
                         },
-                    ],
+                    ]
                 },
                 orderBy: {
                     createdAt: "desc",
                 },
                 take: 5,
-                skip: lastId ? 1 : 0,
-                ...(lastId && { cursor: { id: lastId } }),
+                skip: offset ? offset : 0,
             })
         ),
     },
